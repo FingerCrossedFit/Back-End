@@ -1,0 +1,66 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.17'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'kr.co.nubiz'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-validation' //bean-validation
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' //OAuth2
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0' //mybatis
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13' // 230706 LSJ
+	
+	// poi
+	implementation 'org.apache.poi:poi:4.1.2'
+	implementation 'org.apache.poi:poi-ooxml:4.1.2'
+	
+	// lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	//testCompileOnly 'org.projectlombok:lombok'
+	//testAnnotationProcessor 'org.projectlombok:lombok' //추가230503 JGH
+
+	// QR 
+	//implementation 'com.google.zxing:core:3.5.0'
+	//implementation 'com.google.zxing:javase:3.5.0'
+
+	//테스트 자동화
+	implementation 'org.seleniumhq.selenium:selenium-java'
+
+	//JWT Token
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    //json 변환
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'com.google.code.gson:gson:2.8.8'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

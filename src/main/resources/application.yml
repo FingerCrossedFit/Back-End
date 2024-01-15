@@ -1,0 +1,112 @@
+server:
+  address: 0.0.0.0
+  servlet:
+    context-path:        # 컨텍스트 패스 지정
+    session:
+      tracking-modes: cookie            # 세션아이디를 쿠키에 저장함
+      cookie:
+        path: /
+  port: 8080                          # 서비스 포트 지정
+  error:                              # 에러처리 옵션
+    include-exception: TRUE           # 익셉션 포함
+    include-stacktrace: ALWAYS        # 트레이스는 언제나 표시
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  devtools:
+    livereload:
+      enabled: true
+#  datasource:
+#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+#    url:
+#    username:
+#    password:
+    jvm:
+      args: -Dfile.encoding=UTF-8
+    hikari:
+      auto-commit: false
+      connection-test-query: SELECT 1
+      minimum-idle: 10
+      maximum-pool-size: 50
+      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+      pool-name: HikariCP
+      validation-timeout: 3000
+      connection-timeout : 30000
+      max-lifetime : 1800000
+      read-only : false
+  messages:
+    basename: messages, errors
+    encoding: UTF-8
+    fallback-to-system-locale: FALSE
+  thymeleaf:
+    view-names: "*"
+    enabled: TRUE
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+    check-template-location: TRUE
+  jackson:
+    default-property-inclusion: "NON_NULL"
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          kakao:
+#            client-id: ""
+#            client-secret: ""
+#            redirect-uri: "http://localhost:8080/login/oauth2/code/kakao"
+##            redirect-uri: "http://:8080/login/oauth2/code/kakao"
+#            authorization-grant-type: authorization_code
+#            scope: profile_nickname,profile_image,account_email
+#            client-name: kakao
+#            client-authentication-method: POST
+#        provider:
+#          kakao:
+#            authorization-uri: https://kauth.kakao.com/oauth/authorize?prompt=login
+#            token-uri: https://kauth.kakao.com/oauth/token
+#            user-info-uri: https://kapi.kakao.com/v2/user/me
+#            user-name-attribute: id
+
+logging:
+  file:
+    name: "./logs/springboot.log"
+    max-size : 100MB
+  level:
+    root: INFO
+    jdbc:
+      resultset: off
+      resultsettable: off
+    log4jdbc:
+      log4j2: info
+    org:
+      springframework:
+        web: info
+      hibernate:
+        SQL: info
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
+    
+mybatis:
+  type-aliases-package: com.example.back.vo   # 이 패키지에 속한 VO는 alias 없이 클래스명 사용
+  mapper-locations:       #    mybatis mapper 파일 위치  resources 기준
+  - mybatis/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: TRUE       # 반환된 필드명에 카멜 케이스 적용
+    call-setters-on-nulls: TRUE              # 반환된 필드의 쿼리가 null일때 처리
+    jdbc-type-for-null: NULL                 # 반환된 필드의 쿼리가 null일때 기본값
+  type-handlers-package: kr.co.nubiz.handler.type
+
+resources:
+  templates: /home/Back/webapps/data/excel/templates
+  local-file-Path: C:/Users/User/Desktop/Back
+  dev-file-Path: /home/Back/webapps/data
+
+
+
