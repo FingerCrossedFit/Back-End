@@ -52,25 +52,25 @@ spring:
     check-template-location: TRUE
   jackson:
     default-property-inclusion: "NON_NULL"
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          kakao:
-#            client-id: ""
-#            client-secret: ""
-#            redirect-uri: "http://localhost:8080/login/oauth2/code/kakao"
-##            redirect-uri: "http://:8080/login/oauth2/code/kakao"
-#            authorization-grant-type: authorization_code
-#            scope: profile_nickname,profile_image,account_email
-#            client-name: kakao
-#            client-authentication-method: POST
-#        provider:
-#          kakao:
-#            authorization-uri: https://kauth.kakao.com/oauth/authorize?prompt=login
-#            token-uri: https://kauth.kakao.com/oauth/token
-#            user-info-uri: https://kapi.kakao.com/v2/user/me
-#            user-name-attribute: id
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: "1144fe12dfd1a7289b2c0ec76ab04d7b"
+            client-secret: "e2qgAa7M0Kfz1xR8rFwwlAtmOxii0UrW"
+            redirect-uri: "http://localhost:8080/login/oauth2/code/kakao"
+#            redirect-uri: "http://:8080/login/oauth2/code/kakao"
+            authorization-grant-type: authorization_code
+            scope: profile_nickname,profile_image,account_email
+            client-name: kakao
+            client-authentication-method: POST
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize?prompt=login
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
 
 logging:
   file:
